@@ -22,13 +22,15 @@ example usage: http://localhost:8080/api/category
 ## Example
 ### Post and Put Category
 request body raw json:
+```json
 {
     "name": "action",
     "code": "A019"
 }
-
+```
 ### Post and Put Book
 request body raw json:
+```json
 {
     "title": "Bumi",
     "author": "Tere Liye",
@@ -36,10 +38,12 @@ request body raw json:
     "categId": 2,
     "quota" : 10
 }
-
+```
 ### Post Send Email
 request body raw json:
+```json
 {
     "id": 1,
     "emailTo": "receiver@mail.com"
 }
+```
