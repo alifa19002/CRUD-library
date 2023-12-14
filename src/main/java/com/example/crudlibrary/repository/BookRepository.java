@@ -8,8 +8,4 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-//    List<Book> findByTutorialId(Long id);
-//
-//    @Transactional
-//    void deleteByTutorialId(long id);
 }

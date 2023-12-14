@@ -15,9 +15,6 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
-    public CategoryServiceImpl(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
 
     @Override
     public List<Category> findAll(){
@@ -34,18 +31,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
     @Override
     public Category update(Long id, Category category) {
-//        category.getId();
         categoryRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-
-//        if (categoryOptional.isEmpty())
-//            return new CategoryNotFoundException(id);
-
         category.setId(id);
 
         return categoryRepository.save(category);
-
-//        return ResponseEntity.noContent().build();
-//        return categoryRepository.save(category);
     }
 
     @Override

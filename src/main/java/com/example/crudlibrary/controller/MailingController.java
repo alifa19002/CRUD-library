@@ -1,10 +1,7 @@
 package com.example.crudlibrary.controller;
 
-import com.example.crudlibrary.model.Book;
 import com.example.crudlibrary.model.Mailing;
 import com.example.crudlibrary.model.Response;
-import com.example.crudlibrary.repository.BookRepository;
-import com.example.crudlibrary.service.BookService;
 import com.example.crudlibrary.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/send-mail")
 public class MailingController {
-//    @Autowired
-//    private BookRepository bookRepository;
     @Autowired
     private EmailService emailService;
     @PostMapping
-    ResponseEntity<Response> sendMail (@RequestBody @Validated Mailing mailing) /*Mengambil Request data dari Body dan melakukan Proses Validasi*/
+    ResponseEntity<Response> sendMail (@RequestBody @Validated Mailing mailing)
     {
         Response response = new Response();
         response.setMessage("Berhasil Mengirim E-mail");

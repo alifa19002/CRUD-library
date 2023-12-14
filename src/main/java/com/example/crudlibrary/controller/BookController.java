@@ -2,7 +2,6 @@ package com.example.crudlibrary.controller;
 
 import com.example.crudlibrary.model.Book;
 import com.example.crudlibrary.model.Response;
-import com.example.crudlibrary.repository.BookRepository;
 import com.example.crudlibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,12 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/book")
 public class BookController {
     @Autowired
-    private BookRepository bookRepository;
-    @Autowired
     private BookService bookService;
 
-    @PostMapping /*Komunikasi API dengan jenis POST*/
-    ResponseEntity<Response> create (@RequestBody @Validated Book book) /*Mengambil Request data dari Body dan melakukan Proses Validasi*/
+    @PostMapping
+    ResponseEntity<Response> create (@RequestBody @Validated Book book)
     {
         Response response = new Response();
         response.setMessage("Berhasil Membuat Data");
@@ -32,8 +29,8 @@ public class BookController {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(response);
     }
-    @PutMapping("/{id}")/*Komunikasi API dengan jenis PUT*/
-    ResponseEntity<Response> update (@PathVariable ("id")Long id, @RequestBody @Validated Book book) /*Mengambil Request data dari Body dan melakukan Proses Validasi, diseleksi berdasarkan id*/
+    @PutMapping("/{id}")
+    ResponseEntity<Response> update (@PathVariable ("id")Long id, @RequestBody @Validated Book book)
     {
 
         Response response = new Response();
@@ -46,13 +43,12 @@ public class BookController {
                 .body(response);
     }
 
-    @GetMapping("/{id}")/*Komunikasi API dengan jenis GET*/
-    ResponseEntity<Response> getById (@PathVariable ("id")Long id)/*Mengambil Request data dari Berdasarkan id*/
+    @GetMapping("/{id}")
+    ResponseEntity<Response> getById (@PathVariable ("id")Long id)
     {
         Response response = new Response();
         response.setMessage("Berhasil Mengambil Data Berdasarkan Id");
 
-        /*Set Data Dari Database*/
         response.setData(bookService.findById(id));
 
         return  ResponseEntity
@@ -61,7 +57,7 @@ public class BookController {
                 .body(response);
     }
 
-    @GetMapping/*Komunikasi API dengan jenis GET*/
+    @GetMapping
     ResponseEntity<Response> findAll ()
     {
         Response response = new Response();
@@ -75,8 +71,8 @@ public class BookController {
                 .body(response);
     }
 
-    @DeleteMapping("/{id}")/*Komunikasi API dengan jenis GET*/
-    ResponseEntity<Response> deleteById (@PathVariable ("id")Long id)/*Mengambil Request data dari Berdasarkan id*/
+    @DeleteMapping("/{id}")
+    ResponseEntity<Response> deleteById (@PathVariable ("id")Long id)
     {
         Response response = new Response();
         response.setMessage("Data Berhasil dihapus");
