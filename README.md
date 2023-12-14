@@ -18,3 +18,28 @@
 ```
 example usage: http://localhost:8080/api/category
 ```
+
+## Example
+### Post and Put Category
+request body raw json:
+{
+    "name": "action",
+    "code": "A019"
+}
+
+### Post and Put Book
+request body raw json:
+{
+    "title": "Bumi",
+    "author": "Tere Liye",
+    "publisher": "Mizan",
+    "categId": 2,
+    "quota" : 10
+}
+
+### Post Send Email
+request body raw json:
+{
+    "id": 1,
+    "emailTo": "receiver@mail.com"
+}
