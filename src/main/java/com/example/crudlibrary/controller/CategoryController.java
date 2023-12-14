@@ -46,15 +46,23 @@ public class CategoryController {
     @GetMapping("/{id}")
     ResponseEntity<Response> getById (@PathVariable ("id")Long id)/*Mengambil Request data dari Berdasarkan id*/
     {
+
         Response response = new Response();
-        response.setMessage("Berhasil Mengambil Data Berdasarkan Id");
-
-        response.setData(categoryService.findById(id));
-
-        return  ResponseEntity
-                .status(HttpStatus.OK)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(response);
+        try {
+            response.setData(categoryService.findById(id));
+            response.setMessage("Berhasil Mengambil Data Berdasarkan Id");
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response);
+        } catch(Exception e){
+            response.setMessage("Gagal mengambil Data Id");
+            response.setData(null);
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response);
+        }
     }
 
     @GetMapping
