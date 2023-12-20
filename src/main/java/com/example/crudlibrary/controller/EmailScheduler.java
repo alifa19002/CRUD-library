@@ -22,7 +22,7 @@ public class EmailScheduler {
     private JavaMailSender emailSender;
     private static final Logger log = LoggerFactory.getLogger(EmailScheduler.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dMMM_yyyy"); //20Dec_2023
-    @Scheduled(zone ="Asia/Jakarta", cron = "0 37 15 * * *") //s m h date month day, (0 59 1 * * *) scheduled every day at 1:59
+    @Scheduled(zone ="Asia/Jakarta", cron = "0 59 1 * * *") //s m h date month day, (0 59 1 * * *) scheduled every day at 1:59
     public void sendBagDataToEmail() throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
 
