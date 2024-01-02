@@ -19,12 +19,12 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class EmailScheduler {
     @Autowired
-    private JavaMailSender emailSender;
+    private JavaMailSender mailSender;
     private static final Logger log = LoggerFactory.getLogger(EmailScheduler.class);
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dMMM_yyyy"); //20Dec_2023
-    @Scheduled(zone ="Asia/Jakarta", cron = "0 59 1 * * *") //s m h date month day, (0 59 1 * * *) scheduled every day at 1:59
+    @Scheduled(zone ="Asia/Jakarta", cron = "0 */2 * * * *") //s m h date month day, (0 59 1 * * *) scheduled every day at 1:59
     public void sendBagDataToEmail() throws MessagingException {
-        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessage message = mailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
@@ -38,7 +38,7 @@ public class EmailScheduler {
         if(file.exists()) {
             helper.setText(file.getPath() + ", file readable" + file.isReadable());
             helper.addAttachment(file.getFilename(), file);
-            emailSender.send(message);
+            mailSender.send(message);
         } else {
             log.info("The time is now {}", dateFormat.format(new Date()));
         }
